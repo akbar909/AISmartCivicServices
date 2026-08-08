@@ -1,0 +1,174 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import 'leaflet/dist/leaflet.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply font-sans text-slate-900 bg-slate-50 antialiased;
+    min-height: 100vh;
+  }
+
+  /* 3D Animations & Perspectives */
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+  .rotate-3d-card {
+    transform: rotateY(-10deg) rotateX(6deg) translateZ(0);
+    transform-style: preserve-3d;
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+  .rotate-3d-card:hover {
+    transform: rotateY(0deg) rotateX(0deg) scale(1.02) translateZ(20px);
+  }
+  .animate-float-slow {
+    animation: floatSlow 6s ease-in-out infinite;
+  }
+  .animate-float-reverse {
+    animation: floatReverse 7s ease-in-out infinite;
+  }
+
+  @keyframes floatSlow {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-14px) rotate(1.5deg); }
+  }
+  @keyframes floatReverse {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(12px) rotate(-1.5deg); }
+  }
+}
+
+@layer components {
+  /* ── Button System ── */
+  .btn {
+    @apply inline-flex items-center justify-center px-5 py-2.5 rounded-xl font-semibold text-sm
+           transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2
+           disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer;
+  }
+  .btn-primary {
+    @apply btn bg-primary-600 text-white hover:bg-primary-700 focus:ring-primary-500
+           shadow-md hover:shadow-lg active:scale-[0.98];
+  }
+  .btn-secondary {
+    @apply btn bg-secondary-600 text-white hover:bg-secondary-700 focus:ring-secondary-500
+           shadow-md hover:shadow-lg active:scale-[0.98];
+  }
+  .btn-outline {
+    @apply btn border-2 border-primary-600 text-primary-600 hover:bg-primary-50
+           focus:ring-primary-500 active:scale-[0.98];
+  }
+  .btn-ghost {
+    @apply btn text-slate-600 hover:bg-slate-100 focus:ring-slate-400;
+  }
+  .btn-danger {
+    @apply btn bg-red-500 text-white hover:bg-red-600 focus:ring-red-400
+           shadow-md hover:shadow-lg active:scale-[0.98];
+  }
+  .btn-sm {
+    @apply px-3 py-1.5 text-xs;
+  }
+  .btn-lg {
+    @apply px-8 py-3.5 text-base;
+  }
+
+  /* ── Card System ── */
+  .card {
+    @apply bg-white rounded-2xl border border-slate-200 shadow-sm
+           transition-all duration-200;
+  }
+  .card-hover {
+    @apply card hover:shadow-md hover:border-slate-300 hover:-translate-y-0.5;
+  }
+  .card-glass {
+    @apply rounded-2xl border border-white/20 shadow-lg
+           bg-white/80 backdrop-blur-md;
+  }
+
+  /* ── Input System ── */
+  .input {
+    @apply w-full px-4 py-2.5 rounded-xl border border-slate-300 bg-white
+           text-slate-900 placeholder:text-slate-400
+           focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500
+           transition-all duration-200;
+  }
+  .input-error {
+    @apply input border-red-400 focus:ring-red-400 focus:border-red-400;
+  }
+  .label {
+    @apply block text-sm font-medium text-slate-700 mb-1.5;
+  }
+
+  /* ── Badge System ── */
+  .badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold;
+  }
+  .badge-open {
+    @apply badge bg-slate-100 text-slate-600;
+  }
+  .badge-assigned {
+    @apply badge bg-blue-100 text-blue-700;
+  }
+  .badge-progress {
+    @apply badge bg-amber-100 text-amber-700;
+  }
+  .badge-resolved {
+    @apply badge bg-emerald-100 text-emerald-700;
+  }
+  .badge-critical {
+    @apply badge bg-red-100 text-red-700;
+  }
+  .badge-high {
+    @apply badge bg-orange-100 text-orange-700;
+  }
+  .badge-medium {
+    @apply badge bg-yellow-100 text-yellow-700;
+  }
+  .badge-low {
+    @apply badge bg-green-100 text-green-700;
+  }
+
+  /* ── Skeleton Loading ── */
+  .skeleton {
+    @apply animate-pulse bg-slate-200 rounded-xl;
+  }
+
+  /* ── Section Layout ── */
+  .section {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  /* ── Page Header ── */
+  .page-header {
+    @apply mb-8;
+  }
+  .page-title {
+    @apply text-2xl sm:text-3xl font-bold text-slate-900;
+  }
+  .page-subtitle {
+    @apply text-slate-500 mt-1;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent;
+  }
+  .bg-gradient-primary {
+    @apply bg-gradient-to-br from-primary-600 to-primary-800;
+  }
+  .bg-gradient-hero {
+    @apply bg-gradient-to-br from-slate-900 via-primary-900 to-secondary-900;
+  }
+}

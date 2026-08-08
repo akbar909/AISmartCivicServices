@@ -1,0 +1,8 @@
+pandas>=1.3
+scikit-learn>=1.0
+nltk
+joblib
+seaborn
+matplotlib
+sentence-transformers
+tqdm
